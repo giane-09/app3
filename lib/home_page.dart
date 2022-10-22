@@ -10,27 +10,26 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   double peso = 70.0;
   double altura = 165;
-  double inc =0;
-
+  double imc =0;
+  calculadoraImc(){
+    imc = peso / pow((altura /100), 2);
+   setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Color(0xFF001d3d),
-        title: Text("IMC App"),
-        title: Text(
-          "IMC App",
-          style: TextStyle(
-            fontFamily: 'Manrope',
-            fontWeight: FontWeight.bold,
+        backgroundColor: Colors.white,
+        appBar: AppBar(
+          backgroundColor: Color(0xFF001d3d),
+          title: Text(
+            "IMC App",
+            style: TextStyle(
+              fontFamily: 'Manrope',
+              fontWeight: FontWeight.bold,
+            ),
           ),
-        ),
-      ),
-      body: Column(
-        children: [
-          Text("Bienvenido, selecciona tu peso y talla:"),
-        ],
+       ),
       body: Padding(
         padding: const EdgeInsets.all(12.0),
         child: Column(
@@ -125,7 +124,9 @@ class _HomePageState extends State<HomePage> {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Color(0xFF001d3d),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  calculadoraImc();
+                },
                 icon: Icon(Icons.play_arrow),
                 label: Text(
                   "Calcular",
@@ -155,16 +156,48 @@ class _HomePageState extends State<HomePage> {
             ),
             Center(
               child: Image.asset(
-                'assets/img1.png',
+                'assets/images/img1.png',
                 height: 180,
                 width: 180,
                 fit: BoxFit.contain,
-                ),
-            )
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(
+                  imc.toStringAsFixed(1),
+                  style: TextStyle(
+                    fontSize: 30.0,
+                    fontWeight: FontWeight.bold,
+                    color: Color(0XFFf72585),
+              ),
+            ),
+            Text(
+              "Sobrepeso",
+              style: TextStyle(
+                fontSize: 16.0,
+                fontWeight: FontWeight.bold,
+                color:  Color(0XFF1d3557).withOpacity(0.85),
+              ),
+            ),
+            Text(
+              "Debes de comer sano y realizar mas actividad fisica",
+              style: TextStyle(
+                fontSize: 16.0,
+                fontWeight: FontWeight.w400,
+                color:  Color(0XFF1d3557).withOpacity(0.85),
+              ),
+            ),
           ],
-        ),
-      ),
-    );
+        )
+      ],
+    ),
+  ),
+);
     
   }
-
+}
