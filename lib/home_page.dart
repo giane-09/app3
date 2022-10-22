@@ -10,6 +10,8 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   double peso = 70.0;
   double altura = 165;
+  double inc =0;
+
 
   @override
   Widget build(BuildContext context) {
@@ -151,8 +153,18 @@ class _HomePageState extends State<HomePage> {
                 color: Color(0xFF001d3d).withOpacity(0.80),
               ),
             ),
+            Center(
+              child: Image.asset(
+                'assets/img1.png',
+                height: 180,
+                width: 180,
+                fit: BoxFit.contain,
+                ),
+            )
           ],
         ),
       ),
     );
+    
   }
+
